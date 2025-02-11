@@ -1,12 +1,13 @@
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
+import Product from '@/Components/Product';
 import TextInput from '@/Components/TextInput';
 import Authenticated from '@/Layouts/AuthenticatedLayout';
 import { PageProps } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
 
-export default function Index({ auth }: PageProps) {
+export default function Index({ auth, products }: PageProps) {
     const { data, setData, post, processing, reset, errors } = useForm({
         name: '',
     });
@@ -39,6 +40,12 @@ export default function Index({ auth }: PageProps) {
                         Save
                     </PrimaryButton>
                 </form>
+
+                <div className="mt-6 divide-y rounded-lg bg-white shadow-sm">
+                    {products.map((product) => (
+                        <Product key={product.id} product={product} />
+                    ))}
+                </div>
             </div>
         </Authenticated>
     );
