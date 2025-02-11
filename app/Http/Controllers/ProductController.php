@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -16,7 +17,7 @@ class ProductController extends Controller
     public function index(): Response
     {
         return Inertia::render('Products/Index', [
-            //
+            'products' => Product::with('user:id,name')->latest()->get(),
         ]);
     }
 
@@ -36,9 +37,9 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
         ]);
- 
+
         $request->user()->products()->create($validated);
- 
+
         return redirect(route('products.index'));
     }
 
@@ -61,9 +62,17 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product): RedirectResponse
     {
-        //
+        Gate::authorize('update', $product);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $product->update($validated);
+
+        return redirect(route('products.index'));
     }
 
     /**
@@ -71,6 +80,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Gate::authorize('delete', $product);
+
+        $product->delete();
+
+        return redirect(route('products.index'));
     }
 }
