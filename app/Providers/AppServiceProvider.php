@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         Vite::prefetch(concurrency: 3);
         $this->configureCommands();
         $this->configureModels();
+        $this->configureDates();
     }
 
     /**
@@ -44,5 +47,13 @@ class AppServiceProvider extends ServiceProvider
     {
         Model::shouldBeStrict();
         Model::unguard();
+    }
+
+    /**
+     * Configure the application's dates.
+     */
+    public function configureDates(): void
+    {
+        Date::use(CarbonImmutable::class);
     }
 }
