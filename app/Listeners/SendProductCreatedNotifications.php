@@ -6,7 +6,6 @@ use App\Events\ProductCreated;
 use App\Models\User;
 use App\Notifications\NewProduct;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendProductCreatedNotifications implements ShouldQueue
 {

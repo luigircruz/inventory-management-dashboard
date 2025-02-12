@@ -4,10 +4,9 @@ namespace App\Notifications;
 
 use App\Models\Product;
 use Illuminate\Bus\Queueable;
-use Illuminate\Support\Str;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Str;
 
 class NewProduct extends Notification
 {
@@ -37,11 +36,11 @@ class NewProduct extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->subject("New Product from {$this->product->user->name}")
-                    ->greeting("New Product from {$this->product->user->name}")
-                    ->line(Str::limit($this->product->name, 50))
-                    ->action('Check the Product', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject("New Product from {$this->product->user->name}")
+            ->greeting("New Product from {$this->product->user->name}")
+            ->line(Str::limit($this->product->name, 50))
+            ->action('Check the Product', url('/'))
+            ->line('Thank you for using our application!');
     }
 
     /**
