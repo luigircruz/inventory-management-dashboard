@@ -8,10 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
-    protected $fillable = [
-        'name',
-    ];
-
     protected $dispatchesEvents = [
         'created' => ProductCreated::class,
     ];
