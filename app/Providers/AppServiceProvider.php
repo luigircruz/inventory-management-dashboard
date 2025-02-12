@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Vite::prefetch(concurrency: 3);
         $this->configureCommands();
-        Model::unguard();
+        $this->configureModels();
     }
 
     /**
@@ -35,5 +35,14 @@ class AppServiceProvider extends ServiceProvider
         DB::prohibitDestructiveCommands(
             $this->app->environment('production')
         );
+    }
+
+    /**
+     * Configure the application's models.
+     */
+    public function configureModels(): void
+    {
+        Model::shouldBeStrict();
+        Model::unguard();
     }
 }
