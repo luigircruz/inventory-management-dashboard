@@ -1,3 +1,4 @@
+import { Product as ProductType } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -8,7 +9,7 @@ import PrimaryButton from './PrimaryButton';
 
 dayjs.extend(relativeTime);
 
-export default function Product({ product }: { product: any }) {
+export default function Product({ product }: { product: ProductType }) {
     const { auth } = usePage().props;
 
     const [editing, setEditing] = useState(false);

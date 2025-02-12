@@ -4,10 +4,16 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import Product from '@/Components/Product';
 import TextInput from '@/Components/TextInput';
 import Authenticated from '@/Layouts/AuthenticatedLayout';
-import { PageProps } from '@/types';
+import { PageProps, Product as ProductType } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
 
-export default function Index({ auth, products }: PageProps) {
+export default function Index({
+    auth,
+    products,
+}: {
+    auth: PageProps['auth'];
+    products: ProductType[];
+}) {
     const { data, setData, post, processing, reset, errors } = useForm({
         name: '',
     });
