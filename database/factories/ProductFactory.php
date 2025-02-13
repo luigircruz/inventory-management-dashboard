@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Enum\ProductStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +19,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'user_id' => User::factory()->create()->id,
+            'status' => ProductStatus::AVAILABLE,
         ];
     }
 }

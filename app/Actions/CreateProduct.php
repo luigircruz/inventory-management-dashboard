@@ -2,6 +2,7 @@
 
 namespace App\Actions;
 
+use App\Enum\ProductStatus;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +18,7 @@ final class CreateProduct
             Product::create([
                 'user_id' => $user->id,
                 'name' => $attributes['name'],
+                'status' => ProductStatus::AVAILABLE,
             ]);
         });
 
