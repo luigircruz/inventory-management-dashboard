@@ -1,8 +1,8 @@
 import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
 import Product from '@/Components/Product';
-import TextInput from '@/Components/TextInput';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/Components/ui/input';
+import { Label } from '@/components/ui/label';
 import Authenticated from '@/Layouts/AuthenticatedLayout';
 import { PageProps, Product as ProductType } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
@@ -32,27 +32,24 @@ export default function Index({
             <Head title="Products" />
 
             <div className="mx-auto max-w-2xl p-4 sm:p-6 lg:p-8">
-                <form onSubmit={submit}>
+                <form onSubmit={submit} className="space-y-4">
                     <div className="space-y-2">
-                        <InputLabel htmlFor="name" value="Product Name" />
-                        <TextInput
+                        <Label htmlFor="name">Product Name</Label>
+                        <Input
                             id="name"
                             name="name"
                             value={data.name}
                             className="mt-1 block w-full"
                             autoComplete="name"
-                            isFocused={true}
                             onChange={(e) => setData('name', e.target.value)}
                             required
+                            autoFocus
                         />
                         <InputError message={errors.name} className="mt-2" />
                     </div>
                     <div className="space-y-2">
-                        <InputLabel
-                            htmlFor="description"
-                            value="Product Description"
-                        />
-                        <TextInput
+                        <Label htmlFor="description">Product Description</Label>
+                        <Input
                             id="description"
                             name="description"
                             value={data.description}
@@ -69,8 +66,8 @@ export default function Index({
                         />
                     </div>
                     <div className="space-y-2">
-                        <InputLabel htmlFor="price" value="Product Price" />
-                        <TextInput
+                        <Label htmlFor="price">Product Price</Label>
+                        <Input
                             id="price"
                             name="price"
                             value={data.price}
@@ -85,8 +82,8 @@ export default function Index({
                     </div>
 
                     <div className="space-y-2">
-                        <InputLabel htmlFor="stock" value="Product Stock" />
-                        <TextInput
+                        <Label htmlFor="stock">Product Stock</Label>
+                        <Input
                             id="stock"
                             name="stock"
                             value={data.stock}
@@ -99,9 +96,9 @@ export default function Index({
                         />
                         <InputError message={errors.stock} className="mt-2" />
                     </div>
-                    <PrimaryButton className="mt-4" disabled={processing}>
+                    <Button className="mt-4" disabled={processing}>
                         Save
-                    </PrimaryButton>
+                    </Button>
                 </form>
 
                 <div className="mt-6 divide-y rounded-lg bg-white shadow-sm">

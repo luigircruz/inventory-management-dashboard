@@ -5,7 +5,8 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import { useState } from 'react';
 import Dropdown from './Dropdown';
 import InputError from './InputError';
-import PrimaryButton from './PrimaryButton';
+import { Button } from './ui/button';
+import { Textarea } from './ui/textarea';
 
 dayjs.extend(relativeTime);
 
@@ -94,15 +95,16 @@ export default function Product({ product }: { product: ProductType }) {
                 </div>
                 {editing ? (
                     <form onSubmit={submit}>
-                        <textarea
+                        <Textarea
                             value={data.name}
                             onChange={(e) => setData('name', e.target.value)}
                             className="mt-4 w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        ></textarea>
+                        />
                         <InputError message={errors.name} className="mt-2" />
                         <div className="space-x-2">
-                            <PrimaryButton className="mt-4">Save</PrimaryButton>
-                            <button
+                            <Button className="mt-4">Save</Button>
+                            <Button
+                                variant="ghost"
                                 className="mt-4"
                                 onClick={() => {
                                     setEditing(false);
@@ -111,7 +113,7 @@ export default function Product({ product }: { product: ProductType }) {
                                 }}
                             >
                                 Cancel
-                            </button>
+                            </Button>
                         </div>
                     </form>
                 ) : (
