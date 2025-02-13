@@ -18,7 +18,10 @@ final class CreateProduct
             Product::create([
                 'user_id' => $user->id,
                 'name' => $attributes['name'],
+                'description' => $attributes['description'],
                 'status' => ProductStatus::AVAILABLE,
+                'price' => $attributes['price'],
+                'stock' => $attributes['stock'],
             ]);
         });
 
