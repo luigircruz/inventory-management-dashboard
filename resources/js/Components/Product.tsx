@@ -16,6 +16,8 @@ export default function Product({ product }: { product: ProductType }) {
 
     const { data, setData, patch, clearErrors, reset, errors } = useForm({
         name: product.name,
+        price: product.price,
+        stock: product.stock,
     });
 
     const submit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -45,7 +47,8 @@ export default function Product({ product }: { product: ProductType }) {
                 <div className="flex items-center justify-between">
                     <div>
                         <span className="text-gray-800">
-                            {product.user.name}
+                            {product.user.name} ${product.price} -{' '}
+                            {product.stock} in stock: {product.description}
                         </span>
                         <small className="ml-2 text-sm text-gray-600">
                             {dayjs(product.created_at).fromNow()}
