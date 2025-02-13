@@ -19,6 +19,9 @@ export type PageProps<
 export interface Product {
     id: number;
     name: string;
+    description?: string;
+    price: number;
+    stock: number;
     user: User;
     created_at?: string;
     updated_at?: string;
