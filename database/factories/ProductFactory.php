@@ -20,6 +20,8 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->name(),
             'status' => ProductStatus::AVAILABLE,
+            'price' => fake()->randomFloat(2, 1, 1000),
+            'stock' => fake()->numberBetween(0, 100),
         ];
     }
 }
