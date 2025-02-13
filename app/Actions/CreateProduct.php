@@ -2,7 +2,9 @@
 
 namespace App\Actions;
 
+use App\Models\Product;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 final class CreateProduct
 {
@@ -11,14 +13,12 @@ final class CreateProduct
      */
     public function handle(User $user, array $attributes): void
     {
-        // Handle the action...
-        // DB::transaction(function () use ($user, $attributes) {
-        // Product::create([
-        //     'user_id' => $user->id,
-        //     'name' => $attributes['name'],
-        //     'price' => $attributes['price'],
-        // ]);
-        // });
+        DB::transaction(function () use ($user, $attributes) {
+            Product::create([
+                'user_id' => $user->id,
+                'name' => $attributes['name'],
+            ]);
+        });
 
         // broadcast(new ProductCreated($product))->toOthers();
     }
