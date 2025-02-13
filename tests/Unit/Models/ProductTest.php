@@ -12,6 +12,12 @@ test('to array', function () {
         'user_id',
         'name',
         'status',
+        'description',
+        'price',
+        'aisle',
+        'stock',
+        'image',
+        'published_at',
         'created_at',
         'updated_at',
     ]);
