@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
-final class CreateProduct
+final class CreateProductAction
 {
     /**
      * Execute the action.

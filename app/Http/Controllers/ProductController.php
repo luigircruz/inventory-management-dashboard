@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\CreateProduct;
+use App\Actions\CreateProductAction;
 use App\Http\Requests\CreateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
@@ -34,7 +34,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateProductRequest $request, CreateProduct $action): RedirectResponse
+    public function store(CreateProductRequest $request, CreateProductAction $action): RedirectResponse
     {
         $action->handle($request->user(), $request->validated());
 

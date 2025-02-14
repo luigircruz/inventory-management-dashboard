@@ -1,12 +1,12 @@
 <?php
 
-use App\Actions\CreateProduct;
+use App\Actions\CreateProductAction;
 use App\Models\Product;
 use App\Models\User;
 
 it('creates a new product', function () {
     $user = User::factory()->create();
-    $action = app(CreateProduct::class);
+    $action = app(CreateProductAction::class);
 
     $action->handle($user, [
         'name' => 'Product Name',
