@@ -7,6 +7,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property int $user_id
+ * @property-read int $id
+ * @property string $name
+ * @property string|null $description
+ * @property string $status
+ * @property float $price
+ * @property int $stock
+ * @property string|null $aisle
+ * @property string|null $image
+ * @property-read CarbonInterface $created_at
+ * @property-read CarbonInterface $updated_at
+ * @property-read User $user
+ */
 class Product extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */

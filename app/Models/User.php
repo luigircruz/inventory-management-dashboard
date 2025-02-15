@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property-read int $id
+ * @property string $name
+ * @property string $email
+ * @property CarbonInterface|null $email_verified_at
+ * @property string $password
+ * @property string|null $remember_token
+ * @property-read CarbonInterface $created_at
+ * @property-read CarbonInterface $updated_at
+ * @property-read Product[] $products
+ */
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -47,6 +58,9 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Get the products for the user.
+     */
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
