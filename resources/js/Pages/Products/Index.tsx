@@ -1,8 +1,8 @@
 import InputError from '@/Components/InputError';
 import Product from '@/Components/Product';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/Components/ui/button';
 import { Input } from '@/Components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Label } from '@/Components/ui/label';
 import Authenticated from '@/Layouts/AuthenticatedLayout';
 import { PageProps, Product as ProductType } from '@/types';
 import { Head, useForm } from '@inertiajs/react';
