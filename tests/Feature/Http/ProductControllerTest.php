@@ -8,11 +8,10 @@ it('can create a product', function () {
 
     $product = Product::factory()->for($user)->create()->fresh();
 
-
-    $response = $this->post(route('products.store'), $product->toArray());
-    $response->assertStatus(302);
-    $this->actingAs($user);
-    $response->assertRedirect(route('products.index'));
+    $response = $this->actingAs($user)->post(route('products.store'), $product->toArray());
+    $response
+        ->assertSessionHasNoErrors()
+        ->assertRedirect(route('products.index'));
 
     // $this->assertDatabaseHas(Product::class, $product->toArray());
 });
