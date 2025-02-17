@@ -10,12 +10,20 @@ use Illuminate\Support\Facades\DB;
 final class CreateProductAction
 {
     /**
+     * Create a new class instance.
+     */
+    public function __construct(public Product $product)
+    {
+        //
+    }
+
+    /**
      * Execute the action.
      */
     public function handle(User $user, array $attributes): void
     {
         DB::transaction(function () use ($user, $attributes) {
-            Product::create([
+            $this->product->create([
                 'user_id' => $user->id,
                 'name' => $attributes['name'],
                 'description' => $attributes['description'],
