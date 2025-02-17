@@ -6,7 +6,7 @@ import { useState } from 'react';
 import Dropdown from './Dropdown';
 import InputError from './InputError';
 import { Button } from './ui/button';
-import { Textarea } from './ui/textarea';
+import { Input } from './ui/input';
 
 dayjs.extend(relativeTime);
 
@@ -17,6 +17,8 @@ export default function Product({ product }: { product: ProductType }) {
 
     const { data, setData, patch, clearErrors, reset, errors } = useForm({
         name: product.name,
+        description: product.description,
+        status: product.status,
         price: product.price,
         stock: product.stock,
     });
@@ -95,9 +97,21 @@ export default function Product({ product }: { product: ProductType }) {
                 </div>
                 {editing ? (
                     <form onSubmit={submit}>
-                        <Textarea
+                        <Input
                             value={data.name}
                             onChange={(e) => setData('name', e.target.value)}
+                            className="mt-4 w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        />
+                        <Input
+                            value={data.description}
+                            onChange={(e) =>
+                                setData('description', e.target.value)
+                            }
+                            className="mt-4 w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        />
+                        <Input
+                            value={data.status}
+                            onChange={(e) => setData('status', e.target.value)}
                             className="mt-4 w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         />
                         <InputError message={errors.name} className="mt-2" />
