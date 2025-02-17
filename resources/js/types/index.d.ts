@@ -20,6 +20,7 @@ export interface Product {
     id: number;
     name: string;
     description?: string;
+    status?: string;
     price: number;
     stock: number;
     user: User;
