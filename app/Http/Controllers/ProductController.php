@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Actions\CreateProductAction;
+use App\Actions\UpdateProductAction;
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -60,15 +61,11 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product): RedirectResponse
+    public function update(UpdateProductRequest $request, Product $product, UpdateProductAction $action): RedirectResponse
     {
         Gate::authorize('update', $product);
 
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-
-        $product->update($validated);
+        $action->handle($request->user(), $product, $request->validated());
 
         return redirect(route('products.index'));
     }
